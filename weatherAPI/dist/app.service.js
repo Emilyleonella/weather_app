@@ -28,9 +28,6 @@ let AppService = class AppService {
                     throw new Error('WEATHER_API_KEY is not set');
                 })();
     }
-    getHello() {
-        return 'Hello World!';
-    }
     getWeatherByLocation(q, days) {
         return this.httpService
             .get(`${this.baseUrl}/forecast.json`, {

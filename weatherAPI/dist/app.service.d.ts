@@ -8,6 +8,5 @@ export declare class AppService {
     private readonly apiKey;
     private readonly baseUrl;
     constructor(httpService: HttpService, configService: ConfigService);
-    getHello(): string;
     getWeatherByLocation(q: string, days: string): Observable<WeatherResponse>;
 }

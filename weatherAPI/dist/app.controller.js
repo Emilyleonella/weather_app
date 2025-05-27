@@ -21,20 +21,11 @@ let AppController = class AppController {
     constructor(appService) {
         this.appService = appService;
     }
-    getHello() {
-        return this.appService.getHello();
-    }
     getWeatherByLocation(q, days) {
         return this.appService.getWeatherByLocation(q, days);
     }
 };
 exports.AppController = AppController;
-__decorate([
-    (0, common_1.Get)('hi'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", String)
-], AppController.prototype, "getHello", null);
 __decorate([
     (0, common_1.Get)('forecast'),
     __param(0, (0, common_1.Query)('q')),

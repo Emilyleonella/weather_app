@@ -21,11 +21,6 @@ export class AppService {
       })();
   }
 
-  // would this be the best way to handel if the api key is not set?
-
-  getHello(): string {
-    return 'Hello World!';
-  }
   getWeatherByLocation(q: string, days: string): Observable<WeatherResponse> {
     return this.httpService
       .get(`${this.baseUrl}/forecast.json`, {
@@ -44,4 +39,12 @@ export class AppService {
   }
 }
 
-//maping to macth the interface ?
+//mapping to macth the interface ?
+
+// storing & retriving
+// mongodb?
+// local storage?
+// cookies
+// browser storage
+
+// ui feel & function

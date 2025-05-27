@@ -61,8 +61,21 @@ export interface ForecastDay {
   date: string;
   date_epoch: number;
   day: DayForecast;
+  astro: Astro;
   hour: HourForecast[];
 }
+
+export interface Astro {
+  sunrise: string;
+  sunset: string;
+  moonrise: string;
+  moonset: string;
+  moon_phase: string;
+  moon_illumination: number;
+  is_moon_up: number;
+  is_sun_up: number;
+}
+
 export interface DayForecast {
   maxtemp_c: number;
   maxtemp_f: number;
@@ -75,6 +88,8 @@ export interface DayForecast {
   totalprecip_mm: number;
   totalprecip_in: number;
   totalsnow_cm: number;
+  avgvis_km: number;
+  avgvis_miles: number;
   avghumidity: number;
   daily_will_it_rain: number;
   daily_chance_of_rain: number;
@@ -110,6 +125,10 @@ export interface HourForecast {
   chance_of_rain: number;
   will_it_snow: number;
   chance_of_snow: number;
+  vis_km: number;
+  vis_miles: number;
+  gust_mph: number;
+  gust_kph: number;
   uv: number;
 }
 
