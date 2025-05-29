@@ -1,0 +1,10 @@
+.current-weather {
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: #f5f5f5;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.weather-content {
+  margin-top: 1rem;
+} 
