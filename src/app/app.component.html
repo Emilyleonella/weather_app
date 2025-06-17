@@ -3,3 +3,6 @@
   [$weather]="weather$ | async"
   [$error]="error$ | async">
 </app-current-weather>
+<app-forecast-view
+  [$forecast]="weather$ | async">
+</app-forecast-view>

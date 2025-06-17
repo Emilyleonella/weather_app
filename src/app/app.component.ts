@@ -5,13 +5,21 @@ import { Store } from '@ngrx/store';
 import { selectWeather, selectWeatherError } from './state/weather.selectors';
 import { CurrentWeatherComponent } from "./components/current-weather/current-weather.component";
 import { SearchBarComponent } from "./components/search-bar/search-bar.component";
+import { ForecastViewComponent } from "./components/forecast-view/forecast-view.component";
 import { IWeather } from './interfaces/weather';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CurrentWeatherComponent, SearchBarComponent, AsyncPipe],
+  imports: [
+    RouterOutlet, 
+    CurrentWeatherComponent, 
+    SearchBarComponent, 
+    ForecastViewComponent,
+    AsyncPipe,
+    JsonPipe
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
