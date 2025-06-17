@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -11,8 +11,9 @@ import { FormsModule } from '@angular/forms';
 })
 export class SearchBarComponent {
   searchQuery: string = '';
+  $onSearch = output<string>();
 
   onSearch() {
-    // Search logic will go here
+    this.$onSearch.emit(this.searchQuery);
   }
 } 

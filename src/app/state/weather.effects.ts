@@ -10,7 +10,7 @@ export class WeatherEffects {
     this.actions$.pipe(
       ofType(WeatherActions.loadWeather),
       mergeMap(action =>
-        this.weatherService.getWeather(action.location, action.days).pipe(
+        this.weatherService.getWeather(action.location).pipe(
           map(weather => WeatherActions.loadWeatherSuccess({ weather })),
           catchError(error => of(WeatherActions.loadWeatherFailure({ error: error.message })))
         )

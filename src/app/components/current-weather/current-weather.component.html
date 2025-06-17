@@ -1,6 +1,11 @@
 <div class="current-weather">
-  <h2>Current Weather</h2>
-  <div class="weather-content">
-    <!-- Weather information will be displayed here -->
+  <div class="weather-content" *ngIf="$weather()">
+    <div class="location">{{$weather()?.location?.name}}, {{$weather()?.location?.country}}</div>
+    <div class="temperature">{{$weather()?.current?.temp_f}}°F</div>
+    <div class="feels-like">Feels like: {{$weather()?.current?.feelslike_f}}°F</div>
+    <div class="icon"><img src="{{$weather()?.current?.condition?.icon}}" alt="weather icon"></div>
+    <div class="condition">{{$weather()?.current?.condition?.text}}</div>
   </div>
+  <div class="loading" *ngIf="!$weather()">Loading weather data...</div>
+  <div class="error" *ngIf="$error()">{{$error()}}</div>
 </div> 
