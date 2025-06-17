@@ -6,7 +6,7 @@ import { IWeather } from '../../interfaces/weather';
 @Component({
   selector: 'app-current-weather',
   standalone: true,
-  imports: [CommonModule, SearchBarComponent],
+  imports: [CommonModule,],
   templateUrl: './current-weather.component.html',
   styleUrls: ['./current-weather.component.css']
 })
