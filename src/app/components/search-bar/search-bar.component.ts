@@ -12,8 +12,12 @@ import { FormsModule } from '@angular/forms';
 export class SearchBarComponent {
   searchQuery: string = '';
   $onSearch = output<string>();
-
+  $onFavorite = output<string>();
   onSearch() {
     this.$onSearch.emit(this.searchQuery);
+  }
+
+  onFavorite() {
+    this.$onFavorite.emit(this.searchQuery);
   }
 } 

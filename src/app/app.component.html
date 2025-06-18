@@ -1,4 +1,4 @@
-<app-search-bar ($onSearch)="onSearch($event)"></app-search-bar>
+<app-search-bar ($onSearch)="onSearch($event)" ($onFavorite)="onFavorite($event)"></app-search-bar>
 <app-current-weather 
   [$weather]="weather$ | async"
   [$error]="error$ | async">

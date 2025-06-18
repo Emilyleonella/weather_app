@@ -23,16 +23,33 @@ export class AppComponent {
   title = 'weatherApp';
   weather$ = this.store.select(selectWeather);
   error$ = this.store.select(selectWeatherError);
-
+favorite: any[] = [];
   constructor(private store: Store) {}
 
   ngOnInit() {
-    this.store.dispatch(loadWeather({ location: '28227'}));
-    this.store.select(selectWeather).subscribe(console.log);
+    // this.store.dispatch(loadWeather({ location: '28227'}));
+    
+    // Load favorites from localStorage
+    const savedFavorites = localStorage.getItem('favorite');
+    if (savedFavorites) {
+      this.favorite = JSON.parse(savedFavorites);
+    }
   }
 
   onSearch(location: string) {
     this.store.dispatch(loadWeather({ location }));
+  }
+
+  onFavorite(location: string) {
+    console.log('location:', location);
+    
+    if (!this.favorite.includes(location)) {
+      this.favorite = [...this.favorite, location];
+      localStorage.setItem('favorite', JSON.stringify(this.favorite));
+      alert('Favorite added');
+    } else {
+      alert('Location already in favorites');
+    }
   }
 
   //cookies less storage than local and session storage and could be used in older browsers 4kb

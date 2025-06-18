@@ -1,9 +1,10 @@
 <div class="search-bar">
   <input 
-    type="text" 
-    [(ngModel)]="searchQuery" 
-    placeholder="Enter location..."
-    (keyup.enter)="onSearch()"
+  type="text" 
+  [(ngModel)]="searchQuery" 
+  placeholder="Enter location..."
+  (keyup.enter)="onSearch()"
   >
   <button (click)="onSearch()">Search</button>
+  <button (click)="onFavorite()"><i class="fa-solid fa-heart"></i></button>
 </div> 
