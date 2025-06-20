@@ -1,5 +1,6 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { output } from '@angular/core';
 
 @Component({
   selector: 'app-favorite-button',
@@ -9,11 +10,9 @@ import { CommonModule } from '@angular/common';
   styleUrl: './favorite-button.component.css'
 })
 export class FavoriteButtonComponent {
-  @Input() location: string = '';
-  @Input() isFavorite: boolean = false;
-  @Output() onFavorite = new EventEmitter<string>();
+  $favoriteClick = output<void>();
 
-  toggleFavorite() {
-    this.onFavorite.emit(this.location);
+  onClick() {
+    this.$favoriteClick.emit();
   }
 }

@@ -1,0 +1,55 @@
+.favorites-container {
+  margin: 1rem 0;
+  padding: 1rem;
+}
+
+.favorites-header {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.favorites-btn {
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.2s;
+}
+
+.favorites-btn:hover {
+  background-color: #ff5252;
+}
+
+
+
+.clear-btn:hover {
+  background-color: #c82333;
+}
+
+.favorites-list {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.favorite-item {
+  background-color: #f8f9fa;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.2s;
+}
+
+.favorite-item:hover {
+  background-color: #e9ecef;
+}

@@ -6,6 +6,7 @@ import { CurrentWeatherComponent } from "./components/current-weather/current-we
 import { SearchBarComponent } from "./components/search-bar/search-bar.component";
 import { ForecastViewComponent } from "./components/forecast-view/forecast-view.component";
 import { AsyncPipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,7 @@ import { AsyncPipe } from '@angular/common';
     SearchBarComponent, 
     ForecastViewComponent,
     AsyncPipe,
+    CommonModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
@@ -23,7 +25,9 @@ export class AppComponent {
   title = 'weatherApp';
   weather$ = this.store.select(selectWeather);
   error$ = this.store.select(selectWeatherError);
-favorite: any[] = [];
+  favorite: any[] = [];
+  load = true;
+  showFavorites = false;
   constructor(private store: Store) {}
 
   ngOnInit() {
@@ -43,6 +47,11 @@ favorite: any[] = [];
   onFavorite(location: string) {
     console.log('location:', location);
     
+    if (!location || location.trim() === '') {
+      alert('Cannot add empty location to favorites');
+      return;
+    }
+    
     if (!this.favorite.includes(location)) {
       this.favorite = [...this.favorite, location];
       localStorage.setItem('favorite', JSON.stringify(this.favorite));
@@ -51,6 +60,11 @@ favorite: any[] = [];
       alert('Location already in favorites');
     }
   }
+
+  onLoadFav(){
+    this.showFavorites = true;
+  }
+
 
   //cookies less storage than local and session storage and could be used in older browsers 4kb
   //cookies expiration is set manually

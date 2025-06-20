@@ -1,4 +1,18 @@
-<app-search-bar ($onSearch)="onSearch($event)" ($onFavorite)="onFavorite($event)"></app-search-bar>
+<app-search-bar ($onSearch)="onSearch($event)" ($onFavorite)="onFavorite($event)" ($onLoadFavorite)="onLoadFav()"></app-search-bar>
+<div class="favorites-container">
+  <div class="favorites-header">
+    <button class="favorites-btn" (click)="onLoadFav()">
+      <i class="fa-solid fa-heart"></i> Favorites
+    </button>
+  </div>
+  <ng-container *ngIf="showFavorites">
+    <div class="favorites-list" *ngIf="favorite.length > 0">
+      <div class="favorite-item" *ngFor="let fav of favorite" (click)="onSearch(fav)">
+        <i class="fa-solid fa-location-dot"></i> {{fav}}
+      </div>
+    </div>
+  </ng-container>
+</div>
 <app-current-weather 
   [$weather]="weather$ | async"
   [$error]="error$ | async">
