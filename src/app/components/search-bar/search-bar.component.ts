@@ -27,8 +27,4 @@ export class SearchBarComponent {
     this.$onFavorite.emit(this.searchQuery);
   } 
 
-  onLoadFavorite(e: any) {
-    console.log(e);
-    this.$onLoadFavorite.emit(e);
-  }
 }

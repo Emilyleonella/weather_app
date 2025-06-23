@@ -33,7 +33,7 @@ export class AppComponent {
   ngOnInit() {
     // this.store.dispatch(loadWeather({ location: '28227'}));
     
-    // Load favorites from localStorage
+    // Loads favorites from localStorage
     const savedFavorites = localStorage.getItem('favorite');
     if (savedFavorites) {
       this.favorite = JSON.parse(savedFavorites);
@@ -45,15 +45,19 @@ export class AppComponent {
   }
 
   onFavorite(location: string) {
-    console.log('location:', location);
-    
+    //this is to prevent adding empty locations to favorites
+    // checks if the location is empty, null, undefined, or just whitespace
     if (!location || location.trim() === '') {
       alert('Cannot add empty location to favorites');
       return;
     }
-    
+    //if the location is not in the favorites array, add it to the favorites array
+    // also prevents adding the same location to favorites multiple times
     if (!this.favorite.includes(location)) {
+      //this spreads the current favorites and adds the new location to the end of the array
+      // the square brackets are used to create a new array
       this.favorite = [...this.favorite, location];
+      //here we are saving the new favorites array to the localStorage
       localStorage.setItem('favorite', JSON.stringify(this.favorite));
       alert('Favorite added');
     } else {
