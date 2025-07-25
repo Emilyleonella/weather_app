@@ -39,12 +39,13 @@ export class AppComponent {
       this.favorite = JSON.parse(savedFavorites);
     }
   }
-
+  
   onSearch(location: string) {
     this.store.dispatch(loadWeather({ location }));
   }
-
+  
   onFavorite(location: string) {
+    
     //this is to prevent adding empty locations to favorites
     // checks if the location is empty, null, undefined, or just whitespace
     if (!location || location.trim() === '') {
@@ -68,6 +69,21 @@ export class AppComponent {
   onLoadFav(){
     this.showFavorites = true;
   }
+
+//TODOS:
+// find how to set limit for favorites
+// how to remove favorites
+// geolocation api Search/Autocomplete API  *****
+// recently viewed locations
+// current session or across sessions
+// spinner or skeleton loader
+// location icon
+// @if instead of ngif  
+
+
+
+
+
 
 
   //cookies less storage than local and session storage and could be used in older browsers 4kb
