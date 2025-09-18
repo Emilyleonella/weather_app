@@ -13,4 +13,5 @@ export class WeatherService {
   getWeather(q: string): Observable<any> {
     return this.http.get(`${this.apiUrl}?q=${q}&days=3`);
   }
+
 }

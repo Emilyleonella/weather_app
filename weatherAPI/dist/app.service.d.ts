@@ -1,7 +1,8 @@
 import { HttpService } from '@nestjs/axios';
 import { ConfigService } from '@nestjs/config';
-import { WeatherResponse } from './forecast.interface';
+import { WeatherResponse } from './interface/forecast.interface';
 import { Observable } from 'rxjs';
+import { LocationResponse } from './interface';
 export declare class AppService {
     private readonly httpService;
     private readonly configService;
@@ -9,4 +10,5 @@ export declare class AppService {
     private readonly baseUrl;
     constructor(httpService: HttpService, configService: ConfigService);
     getWeatherByLocation(q: string, days: string): Observable<WeatherResponse>;
+    getLocation(q: string): Observable<LocationResponse>;
 }

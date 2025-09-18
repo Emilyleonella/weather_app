@@ -41,6 +41,18 @@ let AppService = class AppService {
             throw new Error('Failed to fetch weather data');
         }));
     }
+    getLocation(q) {
+        return this.httpService
+            .get(`${this.baseUrl}/search.json`, {
+            params: {
+                key: this.apiKey,
+                q,
+            },
+        })
+            .pipe((0, rxjs_1.map)((response) => response.data), (0, rxjs_1.catchError)(() => {
+            throw new Error('Failed to fetch location data');
+        }));
+    }
 };
 exports.AppService = AppService;
 exports.AppService = AppService = __decorate([

@@ -24,6 +24,9 @@ let AppController = class AppController {
     getWeatherByLocation(q, days) {
         return this.appService.getWeatherByLocation(q, days);
     }
+    getAutoComplete(q) {
+        return this.appService.getLocation(q);
+    }
 };
 exports.AppController = AppController;
 __decorate([
@@ -34,6 +37,13 @@ __decorate([
     __metadata("design:paramtypes", [String, String]),
     __metadata("design:returntype", rxjs_1.Observable)
 ], AppController.prototype, "getWeatherByLocation", null);
+__decorate([
+    (0, common_1.Get)('search'),
+    __param(0, (0, common_1.Query)('q')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", rxjs_1.Observable)
+], AppController.prototype, "getAutoComplete", null);
 exports.AppController = AppController = __decorate([
     (0, common_1.Controller)('weather'),
     __metadata("design:paramtypes", [app_service_1.AppService])

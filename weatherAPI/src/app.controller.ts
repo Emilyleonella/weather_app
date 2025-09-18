@@ -1,7 +1,7 @@
 import { Controller, Get, Query } from '@nestjs/common';
 import { AppService } from './app.service';
-import { WeatherResponse } from './forecast.interface';
 import { Observable } from 'rxjs';
+import { LocationResponse, WeatherResponse } from './interface';
 
 @Controller('weather')
 export class AppController {
@@ -13,5 +13,10 @@ export class AppController {
     @Query('days') days: string, // Number of days of weather forecast. Value ranges from 1 to 3
   ): Observable<WeatherResponse> {
     return this.appService.getWeatherByLocation(q, days);
+  }
+
+  @Get('search')
+  getAutoComplete(@Query('q') q: string): Observable<LocationResponse> {
+    return this.appService.getLocation(q);
   }
 }

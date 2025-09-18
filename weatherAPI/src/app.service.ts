@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { ConfigService } from '@nestjs/config';
-import { WeatherResponse } from './forecast.interface';
+import { WeatherResponse } from './interface/forecast.interface';
 import { catchError, map, Observable } from 'rxjs';
 import { AxiosResponse } from 'axios';
+import { LocationResponse } from './interface';
 
 @Injectable()
 export class AppService {
@@ -34,6 +35,22 @@ export class AppService {
         map((response: AxiosResponse<WeatherResponse>) => response.data),
         catchError(() => {
           throw new Error('Failed to fetch weather data');
+        }),
+      );
+  }
+
+  getLocation(q: string): Observable<LocationResponse> {
+    return this.httpService
+      .get(`${this.baseUrl}/search.json`, {
+        params: {
+          key: this.apiKey,
+          q,
+        },
+      })
+      .pipe(
+        map((response: AxiosResponse<LocationResponse>) => response.data),
+        catchError(() => {
+          throw new Error('Failed to fetch location data');
         }),
       );
   }

@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { loadWeather } from './state/weather.actions';
 import { Store } from '@ngrx/store';
 import { selectWeather, selectWeatherError } from './state/weather.selectors';
 import { CurrentWeatherComponent } from "./components/current-weather/current-weather.component";
 import { SearchBarComponent } from "./components/search-bar/search-bar.component";
 import { ForecastViewComponent } from "./components/forecast-view/forecast-view.component";
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, isPlatformBrowser } from '@angular/common';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -28,15 +28,20 @@ export class AppComponent {
   favorite: any[] = [];
   load = true;
   showFavorites = false;
-  constructor(private store: Store) {}
+  constructor(
+    private store: Store,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
 
   ngOnInit() {
     // this.store.dispatch(loadWeather({ location: '28227'}));
     
-    // Loads favorites from localStorage
-    const savedFavorites = localStorage.getItem('favorite');
-    if (savedFavorites) {
-      this.favorite = JSON.parse(savedFavorites);
+    // Loads favorites from localStorage (only in browser)
+    if (isPlatformBrowser(this.platformId)) {
+      const savedFavorites = localStorage.getItem('favorite');
+      if (savedFavorites) {
+        this.favorite = JSON.parse(savedFavorites);
+      }
     }
   }
   
@@ -58,8 +63,10 @@ export class AppComponent {
       //this spreads the current favorites and adds the new location to the end of the array
       // the square brackets are used to create a new array
       this.favorite = [...this.favorite, location];
-      //here we are saving the new favorites array to the localStorage
-      localStorage.setItem('favorite', JSON.stringify(this.favorite));
+      //here we are saving the new favorites array to the localStorage (only in browser)
+      if (isPlatformBrowser(this.platformId)) {
+        localStorage.setItem('favorite', JSON.stringify(this.favorite));
+      }
       alert('Favorite added');
     } else {
       alert('Location already in favorites');
