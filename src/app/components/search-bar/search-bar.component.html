@@ -1,10 +1,30 @@
-<div class="search-bar">
-  <input 
-  type="text" 
-  [(ngModel)]="searchQuery" 
-  placeholder="Enter location..."
-  (keyup.enter)="onSearch()"
-  >
-  <button (click)="onSearch()">Search</button>
-  <button *ngIf="!load" (click)="onFavorite()"><i class="fa-solid fa-heart"></i></button>
+<div class="search-container">
+  <div class="search-bar">
+    <input 
+      type="text" 
+      [(ngModel)]="searchQuery" 
+      placeholder="Enter location..."
+      (input)="onInputChange()"
+      (keyup.enter)="onSearch()"
+      autocomplete="off"
+      class="search-input"
+    >
+    <button (click)="onSearch()" class="search-button">Search</button>
+    <button *ngIf="!load" (click)="onFavorite()" class="favorite-button">
+      <i class="fa-solid fa-heart"></i>
+    </button>
+  </div>
+  
+  <!-- Autocomplete suggestions dropdown -->
+  <div *ngIf="showSuggestions" class="suggestions-dropdown">
+    <div 
+      *ngFor="let suggestion of suggestions; let i = index" 
+      class="suggestion-item"
+      [class.selected]="i === selectedIndex"
+      (click)="selectSuggestion(suggestion)"
+    >
+      <div class="suggestion-main">{{ suggestion.name }}</div>
+      <div class="suggestion-detail">{{ suggestion.region }}, {{ suggestion.country }}</div>
+    </div>
+  </div>
 </div> 
